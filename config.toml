@@ -39,6 +39,11 @@ disqusShortname = "yourdiscussshortname"
     url = "/about"
     weight = 4
 
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact"
+    weight = 5
+
 [params]
     since = 2019
     author = "Xesina"               # Author's name
