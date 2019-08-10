@@ -1,11 +1,14 @@
-language: go
+git:
+  depth: false
 
-go:
-  - master # This uses automatically the latest version of go
+env:
+  global:
+    - HUGO_VERSION="0.56.3"
 
-# Install Hugo
 install:
-  - go get github.com/spf13/hugo # This provides the latest version of Hugo to Travis CI
+  - wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+  - tar xf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+  - mv hugo ~/bin/
 
 script:
   - hugo --gc --minify
@@ -16,6 +19,10 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: public
+  keep-history: true
+  local-dir: public
+  repo: xesina/xesina.github.io
+  target-branch: master
+  verbose: true
   on:
 branch: master
